@@ -1,13 +1,19 @@
 import { test, expect } from '@playwright/test'
 import { HomePage } from '../../page-objects/HomePage'
 import { LoginPage } from '../../page-objects/LoginPage'
+import { Navbar } from '../../page-objects/components/Navbar'
+import { PaymentPage } from '../../page-objects/PaymentPage'
 
 test.describe('Currency Exchange Form', () => {
     let homePage:HomePage
     let loginPage: LoginPage
+    let navbar: Navbar
+    let paymentPage: PaymentPage
     test.beforeEach(async({page})=>{
         homePage=new HomePage(page)
         loginPage=new LoginPage(page)
+        navbar=new Navbar(page)
+        paymentPage=new PaymentPage(page)
         await homePage.visit()
         await homePage.clickOnSignIn()
         await loginPage.login('username','password')
@@ -15,29 +21,27 @@ test.describe('Currency Exchange Form', () => {
     })
 
   
-    test('Should make currency exchange', async ({ page }) => {
-        await page.click('#pay_bills_tab')
-        await page.click("a[href$='#ui-tabs-3']")
+    test('Should make currency exchange', async ({ page }) => 
+    {
+        await navbar.clickOnTab('Pay Bills')
+        //await page.click("a[href$='#ui-tabs-3']")
+        await paymentPage.clickOnLowerTab('Purchase Foreign Currency')
 
         //select currency option
-        await page.selectOption('#pc_currency','Eurozone (euro)')
+        await paymentPage.selectCurrency('Eurozone (euro)')
         //type in 1000 for amount
-        await page.type('#pc_amount','1000')
+        await paymentPage.setAmt('1000')
         //select USD
-        await page.click('#pc_inDollars_true')
+        await paymentPage.conversionType(1) //1 for USD, anything else for selected
         //click Calculate Costs
-        await page.click('#pc_calculate_costs')
+        await paymentPage.calculateCosts()
         //ensure the value is 721.40 euro (EUR) = 1000.00 U.S. dollar (USD)
-        const actualAmt = await page.locator('#pc_conversion_amount')
-        await expect(actualAmt).toContainText(
-            '721.40 euro (EUR) = 1000.00 U.S. dollar (USD)')
-        
+        await paymentPage.verifyAmt('721.40 euro (EUR) = 1000.00 U.S. dollar (USD)')
         //Purchase
-        await page.click('#purchase_cash')
-
+        await paymentPage.purchase()
         //Get and check confirmation msg
-        const confirm = await page.locator('#alert_container')
-        await expect(confirm).toBeVisible()
-        await expect(confirm).toContainText('Foreign currency cash was successfully purchased.')
-})
+        await paymentPage.verifySuccess()
+        
+        
+    })
 })
