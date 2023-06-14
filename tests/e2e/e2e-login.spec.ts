@@ -19,6 +19,7 @@ test.describe.parallel("login/logout", () =>{
     test('negative login', async({page})=>{
         await homePage.clickOnSignIn()
         await loginPage.login('invalidName','invalidPass')
+        //await loginPage.wait(3000)
         await loginPage.assertErrorMessage() //get and check error msg
     })
 
