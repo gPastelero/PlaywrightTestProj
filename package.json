@@ -1,16 +1,15 @@
 {
   "name": "udemyplaywright",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample playwright project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "cTest": "playwright test --config=playwright.config.ts --project=Chromium",
     "fTest": "playwright test --config=playwright.config.ts --project=Firefox",
     "wTest": "playwright test --config=playwright.config.ts --project=Webkit",
     "e2eTest": "playwright test --config=e2e.config.ts --project=Chromium"
   },
-  "author": "",
+  "author": "Gabriel Pastelero",
   "license": "ISC",
   "dependencies": {
     "@playwright/test": "^1.34.3",

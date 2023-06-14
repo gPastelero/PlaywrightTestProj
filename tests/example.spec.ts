@@ -74,7 +74,7 @@ test("Screenshots @ss",async({page})=>
   await element.screenshot({path: 'test-results/screenshot2.png'}) //single element screenshot
 })
 
-test.describe.parallel.only('Hooks', () =>{
+test.describe.parallel('Hooks', () =>{
   test.beforeEach(async ({ page }) => {
     await page.goto('https://example.com/')
   })
