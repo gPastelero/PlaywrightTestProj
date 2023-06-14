@@ -7,7 +7,10 @@
     "cTest": "playwright test --config=playwright.config.ts --project=Chromium",
     "fTest": "playwright test --config=playwright.config.ts --project=Firefox",
     "wTest": "playwright test --config=playwright.config.ts --project=Webkit",
-    "e2eTest": "playwright test --config=e2e.config.ts --project=Chromium"
+    "e2eTest": "playwright test --config=e2e.config.ts --project=Chromium",
+    "visualTest": "playwright test --config=visual.config.ts --project=Chromium",
+    "visualTestAll": "playwright test --config=visual.config.ts --project=Firefox && playwright test --config=visual.config.ts --project=Chromium && playwright test --config=visual.config.ts --project=Webkit",
+    "visualTestAllUpdate": "playwright test --config=visual.config.ts --project=Firefox --update-snapshots && playwright test --config=visual.config.ts --project=Chromium --update-snapshots && playwright test --config=visual.config.ts --project=Webkit --update-snapshots"
   },
   "author": "Gabriel Pastelero",
   "license": "ISC",
