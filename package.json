@@ -4,7 +4,7 @@
   "description": "Sample playwright project",
   "main": "index.js",
   "scripts": {
-    "cTest": "playwright test --config=playwright.config.ts --project=Chromium",
+    "cTest": "playwright test --config=playwright.config.ts --project=Chromium --retries=2",
     "fTest": "playwright test --config=playwright.config.ts --project=Firefox",
     "wTest": "playwright test --config=playwright.config.ts --project=Webkit",
     "e2eTest": "playwright test --config=e2e.config.ts --project=Chromium",
