@@ -5,8 +5,11 @@
     It performs several web testing functions and is done in a POM model.<br></p>
 <hr>
 <h2>Usage</h2>
-<p>Use the following script to run every test: `npm run e2eTest`<br>
+<p>Use the following script to run every end2end test: `npm run e2eTest`<br>
     That runs the command: playwright test --config=e2e.config.ts --project=Chromium<br>
+    To run every api test, use `npm run apiTest`<br>
+    And to run Every visual regression test, use `npm run visualTest`<br><br>
+    To run every single test, use: `npm run cTest` (or fTest or wTest to test chromium,firefox, and webkit browsers)<br>
     </p>
 <hr>
 <h2>Requirements</h2>
