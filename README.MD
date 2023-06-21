@@ -14,7 +14,7 @@
     </p>
 <hr>
 <h2>Requirements</h2>
-<p>The following dependencies are needed:
+<p>The following packages were used:
 <ul>
 <li>Node JS</li>
 <li>Playwright - npm install @playwright/test</li>
